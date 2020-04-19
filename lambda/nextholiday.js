@@ -39,6 +39,7 @@ exports.handler = async function(event, context, callback) {
   let parameters = event.queryStringParameters; // for GET
   //let parameters = JSON.parse(event.body); // for POST
 
+  console.log( event.headers );
   let target = pickupNextHoliday(parameters.timezonename, parameters.ipaddress);
 
   target.then( (result) => {
