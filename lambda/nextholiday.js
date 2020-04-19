@@ -36,7 +36,7 @@ exports.handler = async function(event, context, callback) {
   let target = pickupNextHoliday(parameters.timezonename, parameters.ipaddress);
 
   target.then( (result) => {
-    console.log( req.headers );
+    console.log( event.headers );
     console.log( 'found next holiday : ' + result.date + "  " + result.localName );
     callback(null, {
       statusCode: 200,
