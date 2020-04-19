@@ -38,7 +38,8 @@ module.exports = (req, res) => {
   let target = pickupNextHoliday(parameters.timezonename, parameters.ipaddress);
 
   target.then( (result) => {
-    console.log( req.headers );
+    console.log( 'req:=>' + req.headers );
+    console.log( 'result:=>' + result );
     console.log( 'found next holiday : ' + result.date + "  " + result.localName );
     res.status(200).json(result);
   });
