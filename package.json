@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "axios" : "^0.19.2",
+    "netlify-lambda" : "^0.4.0",
+    "moment" : "^2.24.0",
+    "moment-timezone" : "^0.5.28",
+    "express" : "^4.17.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:lambda": "netlify-lambda serve lambda",
+    "build:lambda": "netlify-lambda build lambda"
+  } 
+}
