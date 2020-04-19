@@ -12,12 +12,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.7/jstz.js"></script>
 
     <script type="text/javascript">
+      let urlpart = "/.netlify/functions/nextholiday?";
+      if ( document.location.host.indexOf('next-public-holiday.now.sh') != -1 ) {
+        urlpart = "/api/nextholiday?";
+      }
+
       window.addEventListener( "DOMContentLoaded", function() {
         let tzname = jstz.determine().name();
         fetch( "https://jsonip.com")
         .then( resp2 => resp2.json() )
         .then( json => {
-          fetch( location.origin + "/nextholiday?"
+          fetch( location.origin + urlpart
                  + "timezonename=" + tzname + "&ipaddress=" + json.ip )
           .then( resp3 => resp3.json() )
           .then( json => {
