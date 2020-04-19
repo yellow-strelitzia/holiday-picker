@@ -27,6 +27,12 @@ let pickupNextHoliday = async function(timezone, ipaddress) {
     }
     return nextholiday;
   }
+
+  var target =  getNextHolidayCore( datenow.format('YYYY') );
+  if ( target == null ) {
+    target =  getNextHolidayCore( String(datenow.year() + 1) );
+  }
+  return target;
 };
 
 module.exports = (req, res) => {
