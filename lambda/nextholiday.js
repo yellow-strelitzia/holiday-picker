@@ -1,5 +1,6 @@
 const axios = require('axios');
 const moment = require('moment');
+require('moment-timezone');
 
 let pickupNextHoliday = async function(timezone, ipaddress) {
   moment.tz.setDefault(timezone);
