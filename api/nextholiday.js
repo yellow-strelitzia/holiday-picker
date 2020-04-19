@@ -41,6 +41,7 @@ module.exports = (req, res) => {
   let parameters = req.query; // for get
   //let parameters = req.body; // for post
 
+  console.log( 'XXX' );
   let target = pickupNextHoliday(parameters.timezonename, parameters.ipaddress);
 
   target.then( (result) => {
