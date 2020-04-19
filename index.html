@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+　  <meta charset="utf-8">
+    <title>Next Public Holiday</title>
+    <meta name="description" content="Next Public Holiday">
+    <meta name="author" content="yellow-streritzia">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.7/jstz.js"></script>
+
+    <script type="text/javascript">
+      window.addEventListener( "DOMContentLoaded", function() {
+        let tzname = jstz.determine().name();
+        fetch( "https://jsonip.com")
+        .then( resp2 => resp2.json() )
+        .then( json => {
+          fetch( location.origin + "/nextholiday?"
+                 + "timezonename=" + tzname + "&ipaddress=" + json.ip )
+          .then( resp3 => resp3.json() )
+          .then( json => {
+            let title = document.getElementById( "holidaytitle" );
+            let detail = document.getElementById( "holidaydetail" );
+            title.innerHTML = json.localName;
+            detail.innerHTML = json.date;
+          } );
+        } );
+      }, false );
+    </script>
+  </head>
+  <body>
+    <div class="columns">
+      <div class="column is-6"> 
+    <div class="box">
+      <h1 class="title">Next Public Holiday</h1>
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="holiday.jpg" alt="Placeholder image">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4" id="holidaytitle" name="holidaytitle">Holiday</p>
+              <p class="subtitle is-6" id="holidaydetail" name="holidaydetail">detail</p>
+            </div>
+          </div>
+
+          <div class="content">
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>© 2019 yellow-streritzia All rights reserved.</strong>
+        </p>
+      </div>
+    </footer>    
+  </body>
+</html>
+
