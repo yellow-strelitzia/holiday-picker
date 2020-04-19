@@ -9,12 +9,12 @@ let pickupNextHoliday = async function(timezone, ipaddress) {
   let getNextHolidayCore = async (year) => {
     // Web API , Geo loc
     let axios_result1 = await axios.get('http://free.ipwhois.io/json/'+ ipaddress);
-    let geolocinfo = JSON.stringify(axios_result1.data);
+    let geolocinfo = axios_result1.data;
 
     // Web API , Nager.date
     let axios_result2 = await axios.get('https://date.nager.at/api/v2/publicholidays/'+ 
         year + '/' + geolocinfo.country_code);
-    let holidays = JSON.stringify(axios_result2.data);
+    let holidays = axios_result2.data;
 
     var nextholiday = null;
     for ( var holiday of holidays ) {
