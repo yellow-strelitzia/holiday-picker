@@ -48,7 +48,7 @@ exports.handler = async function(event, context, callback) {
   //let parameters = JSON.parse(event.body); // for POST
 
   console.log( event.headers );
-  let target = pickupNextHoliday(parameters.timezonename, parameters.ipaddress);
+  let target = await pickupNextHoliday(parameters.timezonename, parameters.ipaddress);
 
   target.then( (result) => {
     console.log( event.headers );
