@@ -6,25 +6,32 @@ let pickupNextHoliday = async function(timezone, ipaddress) {
   moment.tz.setDefault(timezone);
   let datenow = moment();
 
+  console.log( 'DBG 1' );
+
   let getNextHolidayCore = async (year) => {
+    console.log( 'DBG 2' );
     // Web API , Geo loc
     let axios_result1 = await axios.get('http://free.ipwhois.io/json/'+ ipaddress);
     let geolocinfo = axios_result1.data;
 
+    console.log( 'DBG 3' );
     // Web API , Nager.date
     let axios_result2 = await axios.get('https://date.nager.at/api/v2/publicholidays/'+ 
         year + '/' + geolocinfo.country_code);
     let holidays = axios_result2.data;
 
+    console.log( 'DBG 4' );
     var nextholiday = null;
     for ( var holiday of holidays ) {
       let date = moment( holiday.date );
       if ( date.isAfter(datenow) || 
              ( date.isBefore(datenow) && date.diff(datenow, 'hours') > -24 )) {
         nextholiday = holiday;
+    console.log( 'DBG 4 in ' );
         break;
       }
     }
+    console.log( 'DBG 5' );
     return nextholiday;
   }
 
@@ -32,6 +39,7 @@ let pickupNextHoliday = async function(timezone, ipaddress) {
   if ( target == null ) {
     target =  getNextHolidayCore( String(datenow.year() + 1) );
   }
+    console.log( 'DBG 6' );
   return target;
 };
 
