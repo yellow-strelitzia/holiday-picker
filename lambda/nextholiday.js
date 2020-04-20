@@ -42,14 +42,10 @@ exports.handler = async function(event, context, callback) {
   console.log( event.headers );
   let target = await pickupNextHoliday(parameters.timezonename, parameters.ipaddress);
 
-  console.log( target );
-  target.then( (result) => {
-    console.log( event.headers );
-    console.log( 'found next holiday : ' + result.date + "  " + result.localName );
-    callback(null, {
+  console.log( 'found next holiday : ' + target.date + "  " + target.localName );
+  callback(null, {
       statusCode: 200,
-      body: JSON.stringify(result)
-    });
-  })
+      body: JSON.stringify(target)
+  });
 };
 
